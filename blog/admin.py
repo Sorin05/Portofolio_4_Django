@@ -1,24 +1,29 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Post, Comments
+from .models import Routine, Comment
 
 
 
-@admin.register(Post)
-class PostAdmin(SummernoteModelAdmin):
+@admin.register(Routine)
+class RoutineAdmin(SummernoteModelAdmin):
 
-    list_display = ('title', 'slug', 'status', 'created_on')
-    search_fields = ['title', 'content']
-    prepopulated_fields = {'slug': ('title',)}
-    list_filter = ('status', 'created_on')
-    summernote_fields = ('content')
+    prepopulated_fields = {'slug': ('routine_name',)}
+    list_filter = ('added_on', 'updated_on', 'likes')
+    list_display = ('routine_name', 'added_on', 'updated_on')
+    search_fields = ('routine_name', 'description', 'method')
+    summernote_fields = ('description', 'method')
+    actions = ['approve_routine']
 
-@admin.register(Comments)
+    def approve_routine(self, request, queryset):
+        queryset.update(status=1)
+
+
+@admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'body', 'post', 'created_on', 'approved')
-    list_filter = ('approved', 'created_on')
-    search_fields = ('name', 'email',)
+    list_display = ('name', 'body', 'routine', 'added_on', 'approved')
+    list_filter = ('approved', 'added_on')
+    search_fields = ('name', 'body')
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):
