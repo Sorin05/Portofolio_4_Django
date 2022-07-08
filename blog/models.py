@@ -1,41 +1,69 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.utils.text import slugify
 
-STATUS = ((0,"Draft"),(1, "Published"))
+STATUS = ((0, "Draft"), (1, "Added"))
 
-class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+
+class Routine(models.Model):
+    """Workout Routine Model"""
+    routine_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blogposts")
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="routines"
+        )
+    added_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
-    featured_image = CloudinaryField('image', default='placeholder')
-    excerpt = models.TextField(blank=True)
-    created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
+    description = models.TextField()
+    exercise = models.TextField()
+    method = models.TextField()
+    exercise_image = CloudinaryField('image', default='placeholder')
+    likes = models.ManyToManyField(
+        User,
+        related_name="routine_likes",
+        blank=True
+    )
 
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['-added_on']
 
     def __str__(self):
-        return self.title
+        return self.routine_name
 
     def number_of_likes(self):
         return self.likes.count()
 
-class Comments(models.Model):
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.routine_name)
+        super(Routine, self).save(*args, **kwargs)
 
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=80)
-    email = models.EmailField()
+
+
+class Comment(models.Model):
+    """Comments Model"""
+    routine = models.ForeignKey(
+        Routine,
+        on_delete=models.CASCADE,
+        related_name="comments"
+    )
+    name = models.CharField(max_length=50)
+    added_on = models.DateTimeField(auto_now=True)
     body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(
+        User,
+        related_name="comment_likes",
+        blank=True
+    )
     approved = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['added_on']
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+
+    def number_of_likes(self):
+        return self.likes.count()
