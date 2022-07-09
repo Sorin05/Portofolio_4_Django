@@ -21,6 +21,7 @@ class Routine(models.Model):
     exercise = models.TextField()
     method = models.TextField()
     exercise_image = CloudinaryField('image', default='placeholder')
+    status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User,
         related_name="routine_likes",

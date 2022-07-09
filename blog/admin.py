@@ -8,8 +8,8 @@ from .models import Routine, Comment
 class RoutineAdmin(SummernoteModelAdmin):
 
     prepopulated_fields = {'slug': ('routine_name',)}
-    list_filter = ('added_on', 'updated_on', 'likes')
-    list_display = ('routine_name', 'added_on', 'updated_on')
+    list_filter = ('status', 'added_on', 'updated_on', 'likes')
+    list_display = ('routine_name', 'added_on', 'status', 'updated_on')
     search_fields = ('routine_name', 'description', 'method')
     summernote_fields = ('description', 'method')
     actions = ['approve_routine']
