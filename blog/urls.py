@@ -8,4 +8,8 @@ urlpatterns = [
         views.RoutineList.as_view(),
         name='home'
     ),
+    path(
+        '<slug:slug>/', views.RoutineDetail.as_view(),
+        name='routine_detail',
+    )
 ]
