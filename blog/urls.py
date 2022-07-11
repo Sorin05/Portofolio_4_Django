@@ -11,5 +11,10 @@ urlpatterns = [
     path(
         '<slug:slug>/', views.RoutineDetail.as_view(),
         name='routine_detail',
-    )
+    ),
+    path(
+        'like/<slug:slug>', views.RoutineLike.as_view(),
+        name='routine_like'
+    ),
+
 ]

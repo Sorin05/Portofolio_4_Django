@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
+from django.http import HttpResponseRedirect
 from django.views.generic.edit import UpdateView, DeleteView
 from .models import Routine
 from django.urls import reverse_lazy
@@ -66,3 +67,14 @@ class RoutineDetail(View):
                 "comment_form": CommentForm()
             },
         )
+
+class RoutineLike(View):
+
+    def post(self, request, slug):
+        routine = get_object_or_404(Routine, slug=slug)
+
+        if routine.likes.filter(id=request.user.id).exists():
+            routine.likes.remove(request.user)
+        else:
+            routine.likes.add(request.user)
+        return HttpResponseRedirect(reverse('routine_detail', args=[slug]))
