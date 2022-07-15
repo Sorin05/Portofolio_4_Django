@@ -140,3 +140,16 @@ body {
     background: transparent;
     border: none;
 }
+
+/* fix floating footer  */
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100v;
+
+}
+
+footer{
+    margin-top: auto;
+}
