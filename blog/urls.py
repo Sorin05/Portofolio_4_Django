@@ -5,8 +5,13 @@ from . import views
 urlpatterns = [
     path(
         '',
-        views.RoutineList.as_view(),
+        views.landing,
         name='home'
+    ),
+    path(
+        'all-routines/',
+        views.RoutineList.as_view(),
+        name='routine_list'
     ),
     path(
         '<slug:slug>/', views.RoutineDetail.as_view(),
@@ -16,5 +21,7 @@ urlpatterns = [
         'like/<slug:slug>', views.RoutineLike.as_view(),
         name='routine_like'
     ),
-
+    path('routine/create/', views.RoutineCreateView.as_view(), name='create_routine'),
+    path('routine/update/<int:pk>/', views.RoutineUpdateView.as_view(), name='update_routine'),
+    path('routine/delete/<int:pk>/', views.RoutineDeleteView.as_view(), name='delete_routine'),
 ]

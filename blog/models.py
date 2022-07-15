@@ -1,27 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
+
 from django.utils.text import slugify
-
-STATUS = ((0, "Draft"), (1, "Added"))
-
 
 class Routine(models.Model):
     """Workout Routine Model"""
     routine_name = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True) # check for duplicates
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name="routines"
         )
-    added_on = models.DateTimeField(auto_now=True)
+    added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     description = models.TextField()
-    exercise = models.TextField()
-    method = models.TextField()
-    exercise_image = CloudinaryField('image', default='placeholder')
-    status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User,
         related_name="routine_likes",
@@ -39,6 +32,7 @@ class Routine(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.routine_name)
+        self.author = User.objects.get(username='admin')
         super(Routine, self).save(*args, **kwargs)
 
 
@@ -58,7 +52,6 @@ class Comment(models.Model):
         related_name="comment_likes",
         blank=True
     )
-    approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['added_on']

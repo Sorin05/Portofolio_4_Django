@@ -7,7 +7,7 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">{{ routine.title }}</h1>
+                <h1 class="post-title">{{ routine.routine_name }}</h1>
                 <!-- Post author goes before the | the post's created date goes after -->
                 <p class="post-subtitle">{{ routine.author }} | {{ routine.created_on }}</p>
             </div>
@@ -30,7 +30,7 @@
                 <!-- The post content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text ">
-                    {{ routine.content | safe }}
+                    {{ routine.description | safe }}
                 </p>
                 <div class="row">
 
@@ -96,12 +96,7 @@
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
-                <!-- For later -->
-                {% if commented %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is waiting approval
-                </div>
-                {% else %}    
+            
                 {%if user.is_authenticated %}
 
                 <h3>Leave a comment:</h3>
@@ -112,7 +107,13 @@
                     <button type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
                 {% endif %}
-                {% endif %}
+                {% if request.user.is_staff %}
+                <div>
+                    <a class='btn btn-success' href="{% url 'update_routine' routine.pk %}">Update</a>
+                    <a class='btn btn-danger' href="{% url 'delete_routine' routine.pk %}">Delete</a>
+                </div>
+                
+            {% endif %}
                 
             </div>
         </div>

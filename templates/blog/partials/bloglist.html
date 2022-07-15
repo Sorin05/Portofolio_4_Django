@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        {% for routine in routine_list %}
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="card text-center">
+               <img class="card-img-top" src="https://images.pexels.com/photos/129105/pexels-photo-129105.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" width="100%">
+               <div class="card-block">
+                   <h4 class="card-title">{{ routine.title}}</h4>
+                   <p class="card-text">{{ routine.description|safe|truncatewords:25}}</p>
+                   <p class="card-text text-muted h6">{{ routine.created_on}} <i class="far fa-heart"></i>
+                    {{ routine.number_of_likes }}</p>
+                   <a class="btn btn-default" href="{% url 'routine_detail' routine.slug %}">Read More</a>
+               </div>
+            </div>
+         </div>    
+    {% endfor %}
+        </div>
+    </div>
+
+    <a href="{% url 'routine_list'%}" class="btn btn-primary">More Routines</a>
+</div>
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+</div>
