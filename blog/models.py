@@ -45,6 +45,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         related_name="comments"
     )
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     name = models.CharField(max_length=50)
     added_on = models.DateTimeField(auto_now=True)
     body = models.TextField()
@@ -55,7 +56,7 @@ class Comment(models.Model):
     )
 
     class Meta:
-        ordering = ['added_on']
+        ordering = ['-added_on']
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"

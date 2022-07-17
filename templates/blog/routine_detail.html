@@ -13,10 +13,10 @@
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->
-                {% if "placeholder" in routine.featured_image.url %}
-                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                {% if "placeholder" in routine.picture.url %}
+                    <img class="card-img-top" src="https://res.cloudinary.com/dkujdm6hw/image/upload/v1657451532/kkdtepdtmbnoagoqw63p.jpg" alt=" {{routine.title}}'s profile pic">
                 {% else %}
-                <img src=" {{ routine.featured_image.url }}" width="100%">
+                    <img class="card-img-top" src="{{ routine.picture.url }}" alt=" {{routine.title}}'s profile pic">
                 {% endif %}
             </div>
         </div>
@@ -92,6 +92,10 @@
                             <!-- The comment's created date goes here -->
                             {{ comment.created_on }}
                         </span> wrote:
+                        {% if request.user == comment.author %}<div>
+                            <a href="{% url 'update_comment' comment.pk %}" class="btn btn-success">Edit</a>
+                            <a href="{% url 'delete_comment' comment.pk %}" class="btn btn-danger">Delete</a>
+                         </div>{% endif %}
                     </p>
                     <!-- The body of the comment goes before the | -->
                     {{ comment.body | linebreaks }}

@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from .models import Routine
+from django.contrib.auth.mixins import UserPassesTestMixin
+from .models import Routine, Comment
 from django.urls import reverse_lazy
 from .forms import CommentForm
 
@@ -24,7 +26,7 @@ class RoutineDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Routine.objects.all()
         routine = get_object_or_404(queryset, slug=slug)
-        comments = routine.comments.all().order_by('added_on')
+        comments = routine.comments.all()
         liked = False
         if routine.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -52,9 +54,10 @@ class RoutineDetail(View):
         comment_form = CommentForm(data=request.POST)
 
         if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
             comment_form.instance.email = request.user.email
             comment_form.instance.name = request.user.username
-            comment = comment_form.save(commit=False)
+            comment_form.instance.author = request.user
             comment.routine = routine
             comment.save()
         else:
@@ -87,19 +90,40 @@ class RoutineLike(View):
         return HttpResponseRedirect(reverse('routine_detail', args=[slug]))
 
 
-class RoutineCreateView(CreateView):
+class RoutineCreateView(UserPassesTestMixin, CreateView):
     model = Routine
     fields = ['routine_name', 'description', 'picture',]
     success_url = '/'
 
+    def test_func(self):
+        return self.request.user == User.objects.get(username='admin')
 
 
-class RoutineUpdateView(UpdateView):
+class RoutineUpdateView(UserPassesTestMixin, UpdateView):
     model = Routine
     fields = ['routine_name', 'description']
     success_url = '/'
-    
+    def test_func(self):
+        return self.request.user == User.objects.get(username='admin')
 
-class RoutineDeleteView(DeleteView):
-    model =Routine
-    success_url ='/'
+class RoutineDeleteView(UserPassesTestMixin, DeleteView):
+    model = Routine
+    success_url = '/'
+    
+    def test_func(self):
+        return self.request.user == User.objects.get(username='admin')
+    
+class CommentDeleteView(UserPassesTestMixin, DeleteView):
+    model = Comment
+    success_url = '/'
+
+    def test_func(self):
+        return self.request.user == self.get_object().author
+
+class CommentUpdateView(UserPassesTestMixin, UpdateView):
+    model = Comment
+    fields = ['body']
+    success_url = '/'
+
+    def test_func(self):
+        return self.request.user == self.get_object().author
