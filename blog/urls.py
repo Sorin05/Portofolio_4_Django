@@ -26,4 +26,5 @@ urlpatterns = [
     path('routine/delete/<int:pk>/', views.RoutineDeleteView.as_view(), name='delete_routine'),
     path('comment/update/<int:pk>/', views.CommentUpdateView.as_view(), name='update_comment'),
     path('comment/delete/<int:pk>/', views.CommentDeleteView.as_view(), name='delete_comment'),
+    
 ]

@@ -23,11 +23,12 @@
                     
                     <li class="mb-2 list-group-item d-flex justify-content-between align-items-center">
                         <p>{{goal.body}}</p>
-                        {% comment %} <div>
-                            <span data-bs-toggle="modal" data-bs-target="#updategoal" onClick="addgoalBody('{{goal.goal_body}}', '{{goal.pk}}')" class="btn btn-small btn-success">edit</span>
+                         <div>
+                            <a href="{% url 'update_goal' goal.pk %}" class="btn btn-small btn-success">
+                                update</a>
                             <a href="{% url 'delete_goal' goal.pk %}" class="btn btn-small btn-danger">
                                 del</a>
-                        </div> {% endcomment %}
+                        </div>
                     </li> 
             {% endfor %}
         </ul>
