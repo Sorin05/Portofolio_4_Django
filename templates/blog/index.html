@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!--Image Slider -->
-<div class="container-fluid hero-img-container g-0" id="hero-img">
-    <div class="row">
-        <img class="img-fluid img-responsive" src="https://res.cloudinary.com/dkujdm6hw/image/upload/v1657879081/pexels-binyamin-mellish-116077_dmbvbo.jpg">
+<div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Hello, world!</h1>
+      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
     </div>
-</div>
+  </div>
 <!--CTA-->
 {% include 'blog/partials/cta.html' %}
 {% include 'blog/partials/bloglist.html' %}
