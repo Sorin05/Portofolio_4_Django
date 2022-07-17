@@ -56,6 +56,12 @@
                         <!-- The number of likes goes before the closing strong tag -->
                         <strong class="text-secondary"><i class="far fa-heart"></i> {{ routine.number_of_likes }} </strong>
                     </div>
+                    {% if user.is_staff %}<div>
+                        <a href="{% url 'update_routine' routine.pk %}" class="btn btn-success">Edit</a>
+                        <a href="{% url 'delete_routine' routine.pk %}" class="btn btn-danger">Delete</a>
+                     </div>{% endif %}
+                     
+
                     <div class="col-1">
                         {% with comments.count as total_comments %}
                         <strong class="text-secondary"><i class="far fa-comments"></i>
