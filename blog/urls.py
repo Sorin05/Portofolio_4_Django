@@ -14,7 +14,7 @@ urlpatterns = [
         name='routine_list'
     ),
     path(
-        '<slug:slug>/', views.RoutineDetail.as_view(),
+        'routine/<slug:slug>/', views.RoutineDetail.as_view(),
         name='routine_detail',
     ),
     path(

@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 # Create your views here.
 def dashboard(request):
-    pass
+    return render(request, 'goals/dashboard.html')
