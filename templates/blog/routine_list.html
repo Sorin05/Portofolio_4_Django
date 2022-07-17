@@ -1,2 +1,22 @@
 {% extends 'base.html'%}
 {%block content%}
+<div class="container-fluid">
+    <div class="row">
+{% for routine in object_list %}
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="card text-center">
+       <img class="card-img-top" src="https://images.pexels.com/photos/129105/pexels-photo-129105.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" width="100%">
+       <div class="card-block">
+           <h4 class="card-title">{{ routine.title}}</h4>
+           <p class="card-text">{{ routine.description|safe|truncatewords:25}}</p>
+           <p class="card-text text-muted h6">{{ routine.created_on}} <i class="far fa-heart"></i>
+            {{ routine.number_of_likes }}</p>
+           <a class="btn btn-default" href="{% url 'routine_detail' routine.slug %}">Read More</a>
+       </div>
+    </div>
+ </div>    
+{% endfor %}
+</div>
+</div>
+{% include 'partials/pagination.html' %}
+{%endblock%}

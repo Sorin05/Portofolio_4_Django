@@ -14,8 +14,9 @@ def landing(request):
 
 class RoutineList(generic.ListView):
     model = Routine
-    queryset = Routine.objects.all()
+
     paginate_by = 6
+    
     template_name = 'blog/routine_list.html'
 
 class RoutineDetail(View):
