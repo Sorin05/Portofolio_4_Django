@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center">Are you sure you wish to delete this comment?</h1>
+<div class="container mt-5 col-6">
+    <form method="POST">
+    {% csrf_token %}
+        {{form}}
+    
+        <button class="btn btn-danger mx-3" type="submit">Yes</button>
+        <a class="btn btn-primary" href="{% url 'home' %}">No</a>
+    </form>
+</div>
+{% endblock content %}
