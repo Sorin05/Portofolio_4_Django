@@ -113,13 +113,6 @@
                     <button type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
                 {% endif %}
-                {% if request.user.is_staff %}
-                <div>
-                    <a class='btn btn-success' href="{% url 'update_routine' routine.pk %}">Update</a>
-                    <a class='btn btn-danger' href="{% url 'delete_routine' routine.pk %}">Delete</a>
-                </div>
-                
-            {% endif %}
                 
             </div>
         </div>

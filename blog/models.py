@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 
 class Routine(models.Model):
@@ -12,6 +12,7 @@ class Routine(models.Model):
         on_delete=models.CASCADE,
         related_name="routines"
         )
+    picture = CloudinaryField('image', default='placeholder')
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     description = models.TextField()

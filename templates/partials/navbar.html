@@ -11,6 +11,11 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}" img="img-fluid img-responsive" src="https://res.cloudinary.com/dkujdm6hw/image/upload/v1657892388/logo_ibkh8p.webp">Home</a>
                 </li>
                 {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create_routine' %}">Create Routine</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                 </li>

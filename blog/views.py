@@ -73,37 +73,7 @@ class RoutineDetail(View):
             },
         )
 
-    def post(self, request, slug, *args, **kwargs):
-        queryset = Routine.objects.filter(status=1)
-        routine = get_object_or_404(queryset, slug=slug)
-        comments = routine.comments.filter(approved=True).order_by('added_on')
-        liked = False
-        if routine.likes.filter(id=self.request.user.id).exists():
-            liked = True
-
-        comment_form = CommentForm(data=request.POST)
-
-        if comment_form.is_valid():
-            comment_form.instance.email = request.user.email
-            comment_form.instance.name = request.user.username
-            comment = comment_form.save(commit=False)
-            comment.routine = routine
-            comment.save()
-        else:
-            comment_form = CommentForm()
-
-
-        return render(
-            request,
-            "blog/routine_detail.html",
-            {
-                "routine": routine,
-                "comments": comments,
-                "commented": True,
-                "liked": liked,
-                "comment_form": CommentForm()
-            },
-        )
+   
 
 class RoutineLike(View):
 
@@ -119,7 +89,7 @@ class RoutineLike(View):
 
 class RoutineCreateView(CreateView):
     model = Routine
-    fields = ['routine_name', 'description']
+    fields = ['routine_name', 'description', 'picture',]
     success_url = '/'
 
 

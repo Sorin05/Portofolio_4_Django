@@ -5,7 +5,12 @@
         {% for routine in routine_list %}
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="card text-center">
-               <img class="card-img-top" src="https://images.pexels.com/photos/129105/pexels-photo-129105.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" width="100%">
+                {% if "placeholder" in routine.picture.url %}
+                    <img class="card-img-top" src="https://res.cloudinary.com/dkujdm6hw/image/upload/v1657451532/kkdtepdtmbnoagoqw63p.jpg" alt=" {{routine.title}}'s profile pic">
+                {% else %}
+                    <img class="card-img-top" src="{{ routine.picture.url }}" alt=" {{routine.title}}'s profile pic">
+                {% endif %}
+               
                <div class="card-block">
                    <h4 class="card-title">{{ routine.title}}</h4>
                    <p class="card-text">{{ routine.description|safe|truncatewords:25}}</p>
