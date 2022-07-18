@@ -1,108 +1,143 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h1 align=center>GetFit</h1> 
 
-Welcome Sorin05,
+<h2 align=center>Introduction</h2> 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+<p align=center>GetFit is a website dedicated to sharing, creating and interacting with workout routines or daily routines like eating for fat loss, build muscle and over all staying active and healthy . Whether you are a beginner, intermediate or an advance gym "rat" looking to share your "bro science" with less experienced lifters out there, or are looking for something different to add to your workout routine or even daily eating habits, GetFit has got you covered! <br><br>Browse through the website for a bit of inspiration, tips and tricks or if you are a veteran lifter, share your workouts  with others to help get them in the best shape of their lifes!</br><br> Users have the ability to post workout routines registered users can create, update and delete their own workouts as well as comment on and like other users workouts and daily routines. The site provides role-based permissions and the SuperUser is able to approve, edit and delete recipes from the website itself and also via the admin panel.</br><br>GetFit has been built using the Django framework in Python, HTML and CSS, and provides user authentication and full CRUD functionality for workout routines and also user can add goals in the users dashboard.</p>
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+[Visit the live site on Heroku]()
 
-## Gitpod Reminders
+![Multi Device Website Mockup Generator Screenshot]() 
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-`python3 -m http.server`
+## UX - User Experience Design
 
-A blue button should appear to click: _Make Public_,
+## The Strategy Plane
+<hr>
 
-Another blue button should appear to click: _Open Browser_.
+### Concept
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+This project has been developed as part of the [Code Institute's](https://codeinstitute.net/) Diploma in Full-Stack Software Development. The aim is to create a full-stack that will demonstrate the skills I have learnt in Python, Django , HTML, CSS
 
-A blue button should appear to click: _Make Public_,
+The main aim of the website is to provide a space for those looking to improve their physique and overall mental health.  When logged in, users will be able comment on workouts routines share their experience, like workouts and have full CRUD functionality of their own workouts.  A SuperUser will be able to approve, edit and delete user routines to allow them to manage the content of the site.
 
-Another blue button should appear to click: _Open Browser_.
+The sites target audience is:
+* Fitness Enthusiasts and people looking for inspiration for workout routines, .
+* People who are looking to get into fitness and have a healthy lifestyle.
+* People who are looking to increase their productivty in fitness and day to day life.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### User Stories
 
-To log into the Heroku toolbelt CLI:
+<strong>As a General Site User:</strong>
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+* I can set a goal delete or edit.
+* I can view a paginated list of workouts so I can select one to try.
+* I can view the comments on workouts so I can see tips and suggestions.
+* I can click on a workout rotine to see the ecercise and number of reps for differnt fitness goals.
+* I can navigate easily around the site to find what I am looking for.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
-------
+<strong>As a Registered Site User:</strong>
 
-## Release History
+* I can register for an account to enable me to utilise the functionality available for registered users.
+* I can create and share my own tips for workout routines for others users to view.
+* I can edit my workouts so that I can keep them up to date and other user can see what bodyparts Im focusing next.
+* I can comment on other users workouts to interact with the content probably have questions and tips.
+* I can like workouts and share my experience  so I can interact with the content.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+<strong>Agile Methodology</strong>
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+All functionality and development of this project were managed using GitHub Projects Kanban Board which can be found here:
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+[GetFit Workouts Sharing - USER STORIES]()
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+## The Scope Plane
+<hr>
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Site Goals
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+* To provide user with a space to search for fitness routines and tips to get in better shape and stay healthy 
+* To provide users with a visually pleasing website that is intuitive to use and easy to navigate
+* To provide a website where the purpose is immediately clear
+* To provide role-based permissions that allows user to create, edit and delete their own workout routines and goals admin to approve, edit and delete workouts.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Features planned
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+* Intuitive and simple design
+* Visually appealing site 
+* Intuitive navigation across all pages
+* Role-based navigation for different users 
+* Workouts routines   - Registered users can create, read, update and delete their workout routines
+* Users can create goals into their dashboard they can edit update and delete them 
+* Comments & Likes - Registered Users can comment and like 
+* User Sign Up and Log in/Out
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## The Structure Plane
+<hr>
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+## Functional Scope
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### Flowchart
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+![GetFit Flowchart]()
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## Database Schema
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+Two custom models were created for the website, Recipes and Comments and Django AllAuth was utilised for user authentication.  The below ERD was created using [DrawSQL](https://drawsql.app/home) although limitations of the app meant that textarea and Cloudinary fields were not available to use.
 
-------
+![Database Schema]()
 
-## FAQ about the uptime script
 
-**Why have you added this script?**
+## The Skeleton Plane
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+## Wireframes 
 
-**How will this affect me?**
+I used [Balsamiq](https://balsamiq.cloud/) to create low fidelity wireframes which helped me to stay on track during the development process.
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+Some modifications were made to the initial design during the development process based on user feedback and continuous testing.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+<details>
+<summary>Home Page Wireframes for Mobile, Tablet and Desktop</summary>
+<br>
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+![Homepage Wireframes]()
+</details>
 
-**So….?**
+<br>
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+<details>
+<summary>Alternative Navbar Wireframes for Mobile, Tablet and Desktop</summary>
+<br>
 
-**Can I opt out?**
+![Navbar Wireframes]()
+</details>
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+<br>
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+<details>
+<summary>All Workouts Page Wireframes for Mobile, Tablet and Desktop</summary>
+<br>
 
-**Anything more?**
+![All routine Wireframes]())
+</details>
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+<br>
 
----
+<details>
+<summary>Routine Details Wireframes for Mobile, Tablet and Desktop</summary>
+<br>
 
-Happy coding!
+![Routine Detail Wireframes]()
+</details>
+
+<br>
+
+<details>
+<summary>Add Routine Wireframes for Mobile, Tablet and Desktop</summary>
+<br>
+
+![Add Routine Wireframes]()
+    
+</details>
+
+<br>
