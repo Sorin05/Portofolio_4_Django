@@ -83,7 +83,7 @@ All functionality and development of this project were managed using GitHub Proj
 
 ## Database Schema
 
-Two custom models were created for the website, Recipes and Comments and Django AllAuth was utilised for user authentication.  The below ERD was created using [DrawSQL](https://drawsql.app/home) although limitations of the app meant that textarea and Cloudinary fields were not available to use.
+Two custom models were created for the website, Routines and Comments and Django AllAuth was utilised for user authentication.  The below ERD was created using [DrawSQL](https://drawsql.app/home) although limitations of the app meant that textarea and Cloudinary fields were not available to use.
 
 ![Database Schema]()
 
@@ -118,7 +118,7 @@ Some modifications were made to the initial design during the development proces
 <summary>All Workouts Page Wireframes for Mobile, Tablet and Desktop</summary>
 <br>
 
-![All routine Wireframes]())
+![All Routine Wireframes]())
 </details>
 
 <br>
