@@ -30,6 +30,7 @@ class Routine(models.Model):
         return self.routine_name
 
     def number_of_likes(self):
+        """ number of likes"""
         return self.likes.count()
 
     def save(self, *args, **kwargs):
