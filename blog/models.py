@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 
+
 class Routine(models.Model):
     """Workout Routine Model"""
     routine_name = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True) # check for duplicates
+    slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -35,7 +36,6 @@ class Routine(models.Model):
         self.slug = slugify(self.routine_name)
         self.author = User.objects.get(username='admin')
         super(Routine, self).save(*args, **kwargs)
-
 
 
 class Comment(models.Model):

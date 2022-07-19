@@ -5,23 +5,24 @@ from django.http import HttpResponseRedirect
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from .models import Routine, Comment
-from django.urls import reverse_lazy
 from .forms import CommentForm
 
 
 def landing(request):
+    """ Renders the workout list on home page"""
     routine_list = Routine.objects.all()[:6]
     return render(request, 'blog/index.html', {'routine_list': routine_list})
 
 
 class RoutineList(generic.ListView):
+    """ View to show a list of all workouts posted by admin"""
     model = Routine
-
     paginate_by = 6
-    
     template_name = 'blog/routine_list.html'
 
+
 class RoutineDetail(View):
+    """View of the routine detail """
 
     def get(self, request, slug, *args, **kwargs):
         queryset = Routine.objects.all()
@@ -63,7 +64,6 @@ class RoutineDetail(View):
         else:
             comment_form = CommentForm()
 
-
         return render(
             request,
             "blog/routine_detail.html",
@@ -76,9 +76,9 @@ class RoutineDetail(View):
             },
         )
 
-   
 
 class RoutineLike(View):
+    """View to toggle like button"""
 
     def post(self, request, slug):
         routine = get_object_or_404(Routine, slug=slug)
@@ -91,8 +91,9 @@ class RoutineLike(View):
 
 
 class RoutineCreateView(UserPassesTestMixin, CreateView):
+    """View to create a new workout"""
     model = Routine
-    fields = ['routine_name', 'description', 'picture',]
+    fields = ['routine_name', 'description', 'picture', ]
     success_url = '/'
 
     def test_func(self):
@@ -100,27 +101,35 @@ class RoutineCreateView(UserPassesTestMixin, CreateView):
 
 
 class RoutineUpdateView(UserPassesTestMixin, UpdateView):
+    """View of the updated workout"""
     model = Routine
     fields = ['routine_name', 'description']
     success_url = '/'
+
     def test_func(self):
         return self.request.user == User.objects.get(username='admin')
 
+
 class RoutineDeleteView(UserPassesTestMixin, DeleteView):
+    """View of deleted Workout"""
     model = Routine
     success_url = '/'
-    
+
     def test_func(self):
         return self.request.user == User.objects.get(username='admin')
-    
+
+
 class CommentDeleteView(UserPassesTestMixin, DeleteView):
+    """View for deleted comment"""
     model = Comment
     success_url = '/'
 
     def test_func(self):
         return self.request.user == self.get_object().author
 
+
 class CommentUpdateView(UserPassesTestMixin, UpdateView):
+    """View for update comments"""
     model = Comment
     fields = ['body']
     success_url = '/'

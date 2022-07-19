@@ -3,9 +3,9 @@ from django_summernote.admin import SummernoteModelAdmin
 from .models import Routine, Comment
 
 
-
 @admin.register(Routine)
 class RoutineAdmin(SummernoteModelAdmin):
+    """Routine Admin"""
 
     prepopulated_fields = {'slug': ('routine_name',)}
     list_filter = ('added_on', 'updated_on', 'likes')
@@ -13,13 +13,13 @@ class RoutineAdmin(SummernoteModelAdmin):
     search_fields = ('routine_name', 'description')
     summernote_fields = ('description',)
 
-
     def approve_routine(self, request, queryset):
         queryset.update(status=1)
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
+    """Model for the comment admin"""
 
     list_display = ('name', 'body', 'routine', 'added_on')
     list_filter = ('added_on',)
