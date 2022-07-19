@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
+{%load static%}
+<div class="container col-5 mt-3 justify-center">
     <h2 class="text-center">{{user.username}} Dashboard</h2>
     <div class="container col-8 mt-5 justify-center">
         <form  method="POST">
@@ -34,7 +35,7 @@
         </ul>
     
         {% else %}
-        <p class="mt-3">Add a goal to get started</p>
+        <p class="mt-3"align="center">Add your daily goal to get started</p>
         {% endif %}
     </section>
     
