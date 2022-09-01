@@ -4,7 +4,7 @@
 
 <p align=center>GetFit is a Personal Trainers(Gym Rat's) website/blog dedicated to sharing, creating and interacting with workout routines or daily routines like eating for fat loss, build muscle and over all staying active and healthy . Whether you are a beginner, intermediate or an advance gym "rat" looking to share your "bro science" with less experienced lifters out there, or are looking for something different to add to your workout routine or even daily eating habits, GetFit has got you covered! <br><br>Browse through the website for a bit of inspiration, tips and tricks or if you are a veteran lifter, share your thoughts and opinion with others to help get them in the best shape of their lifes!</br><br> Users have the ability to read about workout routines and eating habits registered users can create, update and delete comments on and like the admins workouts and daily routines.SuperUser is able to approve, edit and delete workouts from the website itself and also via the admin panel.</br><br>GetFit has been built using the Django framework in Python, HTML and CSS, and provides user authentication and full CRUD functionality for workout routines and also user can add goals in the users dashboard.</p>
 
-[Visit the live site on Heroku]()
+[Visit the live site on Heroku](https://project4django.herokuapp.com/)
 
 ![Multi Device Website Mockup Generator Screenshot](docs/testing/amiresponsive.PNG) 
 
